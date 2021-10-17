@@ -29,7 +29,10 @@ PLANTUMLPATH = '/usr/local/bin/plantuml.jar'
 
 
 def _exec_and_get_paths(cmd, file_names):
-    subprocess.check_call(cmd, shell=False, stderr=subprocess.STDOUT)
+    try:
+        subprocess.check_call(cmd, shell=False, stderr=subprocess.STDOUT)
+    except Exception:
+        pass
 
     return [os.path.splitext(f)[0] + ".svg" for f in file_names]
 
